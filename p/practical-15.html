@@ -1,53 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Javascript Counter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <style>
-        .main{
+        body {
+            background-color: grey;
+        }
+
+        h1 {
+            color: white;
             text-align: center;
+            margin-top: 100px;
+            font-size: 70px;
         }
-        #neg,#pos{
-            font-size: 30px;
-            margin: 30px;
+       
+
+        button {
+            background-color: yellow;
+            width: 60px;
+            height: 60px;
+            margin: auto;
+            margin-left: 530px;
         }
-        body{
-            background-color: #0077b5;
+        #pos{
+            margin-left: 70px;
         }
+
+        input {
+            position: relative;
+            left: 45px;
+            width: 50px;
+            background-color: grey;
+            font-size: 40px;
+            color: yellow;
+            /* margin-left: 150px; */
+            border: 0;
+        }
+        
     </style>
 </head>
+
 <body>
-<div class="main">
-    <h2>COUNTER</h2>
-    <button id="neg">-</button>
-    <p style="display: inline-block; font-size: 1cm" id="counter">0</p>
-    <button id="pos">+</button>
-</div>
-<script language="Javascript" type="text/Javascript">
-    var counter = 0;
-    var button1 = document.getElementById('neg');
-    var button2 = document.getElementById('pos');
-    button1.disabled = true;
-    button1.onclick = function () {
-        counter = counter - 1;
-        document.getElementById('counter').innerHTML = counter;
-        if (counter===0 || counter<0) {
-            button1.disabled = true;
-        }
-        else{
-            button1.disabled=false;
-        }
-    };
-    button2.onclick = function () {
-        counter += 1;
-        document.getElementById('counter').innerHTML = counter;
-        if (counter===0 ||counter<0) {
-            button1.disabled = true;
-        }
-        else{
-            button1.disabled=false;
-        }
-    };
-</script>
+    <h1>COUNTER</h1>
+
+   <div class="container">
+    <button id="neg"> - </button>
+    <input type="text" id="quantity" readonly="" value="0">
+    <button id="pos"> + </button>
+   </div>
+
+
+    <script>
+
+        var add = document.getElementById("pos");
+        var sub = document.getElementById("neg");
+        var qty = document.getElementById("quantity");
+
+        sub.setAttribute("disabled", "disabled");
+
+
+        add.addEventListener('click', () => {
+            var valuecount = parseInt(qty.value) + 1;
+            qty.value = valuecount;
+
+
+            if (valuecount >= 1) {
+                sub.removeAttribute("disabled", "disabled");
+            }
+
+        });
+
+
+        sub.addEventListener('click', () => {
+            var valuecount = parseInt(qty.value) - 1;
+            qty.value = valuecount;
+
+
+            if (valuecount == 0) {
+                sub.setAttribute("disabled", "disabled");
+            }
+
+        });
+
+
+    </script>
+
 </body>
+
 </html>
